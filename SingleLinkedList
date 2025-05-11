@@ -1,0 +1,50 @@
+class Node<T> {
+  T? nodeValue;
+  Node<T>? next;
+
+  Node();
+
+  Node.withValue(T item) {
+    nodeValue = item;
+    next = null;
+  }
+}
+
+class SingleLinkedList<T> {
+  Node<T>? head;
+
+  bool isEmpty() {
+    return head == null;
+  }
+
+  void insertFront(T data) {
+    Node<T> newNode = Node.withValue(data);
+    newNode.next = head;
+    head = newNode;
+  }
+
+  void insertBack(T data) {
+    Node<T> newNode = Node.withValue(data);
+    if (isEmpty()) {
+      head = newNode;
+    } else {
+      Node<T>? temp = head;
+      while (temp!.next != null) {
+        temp = temp.next;
+      }
+      temp.next = newNode;
+    }
+  }
+
+  void printList() {
+    if (isEmpty()) {
+      print("Linked List Kosong");
+    } else {
+      Node<T>? temp = head;
+      while (temp != null) {
+        print(temp.nodeValue);
+        temp = temp.next;
+      }
+    }
+  }
+}
